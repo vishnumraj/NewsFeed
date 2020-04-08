@@ -1,7 +1,8 @@
-package com.vishnuraj.newsfeed
+package com.vishnuraj.newsfeed.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.vishnuraj.newsfeed.R
 
 class NewsFeedActivity : AppCompatActivity() {
 
@@ -9,4 +10,5 @@ class NewsFeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_feed)
     }
+
 }
