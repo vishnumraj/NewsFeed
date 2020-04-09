@@ -16,13 +16,15 @@ import kotlin.reflect.KClass
  * @param viewModels The Map representing the ViewModel class the DaggerProvider of the ViewModel
  */
 @Singleton
-class ViewModelFactory @Inject constructor(private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>) : ViewModelProvider.Factory {
+class ViewModelFactory @Inject constructor(private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>) :
+    ViewModelProvider.Factory {
 
     /**
      * function to retrieve the ViewModel based on the ViewModel class. The function looks for the ViewModel
      * with the Map created by the dagger using the viewModel class as Key.
      */
-    override fun <T : ViewModel> create(modelClass: Class<T>): T = viewModels[modelClass]?.get() as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        viewModels[modelClass]?.get() as T
 }
 
 /**
@@ -32,7 +34,11 @@ class ViewModelFactory @Inject constructor(private val viewModels: MutableMap<Cl
  *
  * @param value The actual subclass extending the ViewModel.
  */
-@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
+@Target(
+    AnnotationTarget.FUNCTION,
+    AnnotationTarget.PROPERTY_GETTER,
+    AnnotationTarget.PROPERTY_SETTER
+)
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 @MapKey
 internal annotation class ViewModelKey(val value: KClass<out ViewModel>)

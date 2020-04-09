@@ -8,4 +8,4 @@ data class News(
     val description: String?,
     @SerializedName("imageHref")
     val imageUrl: String?
-): Serializable
+) : Serializable

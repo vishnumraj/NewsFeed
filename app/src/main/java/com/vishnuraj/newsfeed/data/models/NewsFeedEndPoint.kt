@@ -6,7 +6,6 @@ import retrofit2.http.GET
 
 class NewsFeedEndPoint : SessionEndPoint<NewsFeedAPI>() {
     override val api = NewsFeedAPI::class.java
-
 }
 
 interface NewsFeedAPI {

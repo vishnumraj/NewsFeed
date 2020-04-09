@@ -16,13 +16,16 @@ class NewsFeedUseCase @Inject constructor(private val repository: NewsFeedReposi
                 is Result.Success<*> -> {
                     val newsFeedResponse = result.response as NewsFeedResponse
                     newsFeedResponse.newsList = newsFeedResponse
-                        .newsList.filter { it.title != null
-                                || it.description != null
-                                || it.imageUrl != null
-                    }
+                        .newsList.filter {
+                            it.title != null
+                                    || it.description != null
+                                    || it.imageUrl != null
+                        }
                     Result.Success(newsFeedResponse)
                 }
-                else -> { result }
+                else -> {
+                    result
+                }
             }
         } else {
             Result.Failure(NetworkConnectionError())

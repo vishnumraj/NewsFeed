@@ -9,7 +9,8 @@ import com.vishnuraj.newsfeed.data.models.NewsFeedError
 import com.vishnuraj.newsfeed.data.repository.NewsFeedRepository
 import javax.inject.Inject
 
-class NewsFeedRepositoryImpl @Inject constructor(private val context: Context): NewsFeedRepository {
+class NewsFeedRepositoryImpl @Inject constructor(private val context: Context) :
+    NewsFeedRepository {
 
     override suspend fun isNetworkAvailable(): Boolean {
         val service = Context.CONNECTIVITY_SERVICE
