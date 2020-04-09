@@ -1,7 +1,7 @@
 package com.vishnuraj.newsfeed.domain
 
 import android.content.Context
-import com.vishnuraj.newsfeed.base.data.Result
+import com.vishnuraj.newsfeed.base.data.models.Result
 import com.vishnuraj.newsfeed.data.models.NetworkConnectionError
 import com.vishnuraj.newsfeed.data.models.NewsFeedError
 import com.vishnuraj.newsfeed.data.models.NewsFeedResponse

@@ -1,12 +1,11 @@
 package com.vishnuraj.newsfeed.data.repository.impl
 
 import android.content.Context
-import com.vishnuraj.newsfeed.base.data.Result
+import com.vishnuraj.newsfeed.base.data.models.Result
 import com.vishnuraj.newsfeed.data.models.NewsFeedResponse
 import com.vishnuraj.newsfeed.data.repository.NewsFeedRepository
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 

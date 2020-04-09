@@ -1,4 +1,4 @@
-package com.vishnuraj.newsfeed.base.data
+package com.vishnuraj.newsfeed.base.data.models
 
 /**
  * abstract class acting as a base for Network Service request. The class

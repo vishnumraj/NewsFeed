@@ -9,6 +9,9 @@ import dagger.Provides
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Dagger Module class for News Feed
+ */
 @Module
 class NewsFeedModule {
 

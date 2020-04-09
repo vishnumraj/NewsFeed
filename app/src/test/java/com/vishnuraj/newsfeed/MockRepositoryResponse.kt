@@ -1,7 +1,7 @@
 package com.vishnuraj.newsfeed
 
 import com.google.gson.Gson
-import com.vishnuraj.newsfeed.base.data.Result
+import com.vishnuraj.newsfeed.base.data.models.Result
 import com.vishnuraj.newsfeed.data.models.NewsFeedError
 import com.vishnuraj.newsfeed.data.models.NewsFeedResponse
 import java.io.File

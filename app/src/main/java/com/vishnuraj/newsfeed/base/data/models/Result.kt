@@ -1,4 +1,4 @@
-package com.vishnuraj.newsfeed.base.data
+package com.vishnuraj.newsfeed.base.data.models
 
 /**
  * Sealed call representing the Success and Failure response. This class
