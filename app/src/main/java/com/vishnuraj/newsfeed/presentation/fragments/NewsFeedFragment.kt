@@ -1,4 +1,4 @@
-package com.vishnuraj.newsfeed.fragments
+package com.vishnuraj.newsfeed.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
