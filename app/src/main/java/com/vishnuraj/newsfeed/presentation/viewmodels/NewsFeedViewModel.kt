@@ -10,12 +10,13 @@ import com.vishnuraj.newsfeed.domain.NewsFeedUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewsFeedViewModel @Inject constructor(val useCase: NewsFeedUseCase) : ViewModel() {
+class NewsFeedViewModel @Inject constructor(private val useCase: NewsFeedUseCase) : ViewModel() {
 
     var newsFeedState = MutableLiveData<NewsFeedState>().apply { value = NewsFeedState.Loading }
 
     fun fetchNewsFeed() {
         viewModelScope.launch {
+            newsFeedState.value = NewsFeedState.Loading
             when (val result = useCase.execute()) {
                 is Result.Success<*> -> {
                     newsFeedState.value =
