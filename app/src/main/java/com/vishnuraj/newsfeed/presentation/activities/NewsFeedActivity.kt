@@ -1,4 +1,4 @@
-package com.vishnuraj.newsfeed.activities
+package com.vishnuraj.newsfeed.presentation.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
