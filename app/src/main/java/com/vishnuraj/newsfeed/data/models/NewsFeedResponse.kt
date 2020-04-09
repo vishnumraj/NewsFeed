@@ -7,4 +7,4 @@ import java.io.Serializable
 data class NewsFeedResponse(
     val title: String,
     @SerializedName("rows")
-    val newsList: List<News>): Serializable
+    var newsList: List<News>): Serializable
