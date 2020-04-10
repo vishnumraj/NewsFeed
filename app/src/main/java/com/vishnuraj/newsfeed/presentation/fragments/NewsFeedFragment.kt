@@ -26,6 +26,10 @@ import javax.inject.Inject
  */
 class NewsFeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
+    companion object{
+        private const val NEWS_FEED_KEY = "news_feed_key"
+    }
+
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
     private lateinit var viewModel: NewsFeedViewModel
@@ -39,6 +43,20 @@ class NewsFeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     /**
+     * Save the NewsFeed change in case of Orientation change to the out state Bundle. This
+     * outState Bundle will be provided in onActivityCreated method in case of app restart due
+     * to configuration change.
+     *
+     * @param outState Bundle where the data needs to be saved
+     */
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        (viewModel.newsFeedState.value as? NewsFeedState.NewsFeedData)?.data?.let {
+            outState.putSerializable(NEWS_FEED_KEY, it)
+        }
+    }
+
+    /**
      * This method initialise the NewsFeedViewModel and initiate the data NewsFeed fetching
      * from the server.
      *
@@ -49,7 +67,7 @@ class NewsFeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         (activity?.application as NewsFeedApplication).component.inject(this)
         viewModel = viewModelProvider.create(NewsFeedViewModel::class.java)
         viewModel.newsFeedState.observe(this, Observer(::onNewsFeedStateChange))
-        viewModel.fetchNewsFeed()
+        fetchNewsFeed(savedInstanceState)
         refreshLayout.setOnRefreshListener(this)
     }
 
@@ -105,6 +123,22 @@ class NewsFeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun showProgress(show: Boolean) {
         refreshLayout.isRefreshing = show
+    }
+
+    /**
+     * Method to fetch the NewsFeed. A check is done to see if the NewsFeedResponse is
+     * saved because of configuration change. if yes the NewsFeedState is updated with
+     * saved data else The viewModel initiates request to fetch the NewsFeed data from
+     * the server.
+     *
+     * @param savedInstanceState The Bundle instance saved in onSaveInstanceState
+     */
+    private fun fetchNewsFeed(savedInstanceState: Bundle?){
+        (savedInstanceState?.getSerializable(NEWS_FEED_KEY) as?  NewsFeedResponse)?.let {
+            viewModel.newsFeedState.value = NewsFeedState.NewsFeedData(it)
+        }?:run {
+            viewModel.fetchNewsFeed()
+        }
     }
 
     override fun onRefresh() {
