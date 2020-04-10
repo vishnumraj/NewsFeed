@@ -1,6 +1,6 @@
 package com.vishnuraj.newsfeed.base.infrastructure
 
-import com.vishnuraj.newsfeed.base.data.SessionEndPoint
+import com.vishnuraj.newsfeed.base.data.models.SessionEndPoint
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

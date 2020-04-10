@@ -8,4 +8,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NewsTitleStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/newsTitle</item>
+        <item name="android:textSize">@dimen/newsTitleTextSize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/standardPadding</item>
+    </style>
+
+    <style name="NewsDescriptionStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/newsDescription</item>
+        <item name="android:textSize">@dimen/newsDescriptionTextSize</item>
+        <item name="android:layout_gravity">top</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="NewsImageStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">top</item>
+        <item name="android:layout_marginStart">@dimen/standardPadding</item>
+        <item name="android:contentDescription">@string/newsImage</item>
+    </style>
+
 </resources>

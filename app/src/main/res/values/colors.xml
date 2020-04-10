@@ -3,4 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name= "newsTitle">@android:color/holo_blue_dark</color>
+    <color name="newsDescription">@android:color/primary_text_light</color>
 </resources>

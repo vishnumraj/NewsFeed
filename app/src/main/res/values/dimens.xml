@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standardPadding">4dp</dimen>
+    <dimen name="newsTitleTextSize">20sp</dimen>
+    <dimen name="newsDescriptionTextSize">14sp</dimen>
+</resources>
