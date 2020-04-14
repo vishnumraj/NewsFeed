@@ -49,9 +49,8 @@ class NewsFeedAdapter(private val context: Context, private val newsList: List<N
             viewHolder.description.text = it
         } ?: run { viewHolder.description.visibility = GONE }
         news.imageUrl?.let {
-            viewHolder.image.visibility = VISIBLE
-            viewHolder.image.loadImageUrl(context,it)
-        } ?: run { viewHolder.image.visibility = GONE }
+            viewHolder.image.loadImageUrl(it)
+        } ?: run { viewHolder.image.setImageDrawable(context.getDrawable(R.drawable.image_placeholder))}
     }
 
 }
