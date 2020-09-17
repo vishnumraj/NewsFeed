@@ -116,7 +116,7 @@ class NewsFeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         showProgress(false)
         activity?.title = response.title
         context?.let {
-            recyclerView.layoutManager = LinearLayoutManager(context)
+            recyclerView.layoutManager = LinearLayoutManager(it)
             recyclerView.adapter = NewsFeedAdapter(it, response.newsList)
         }
     }
