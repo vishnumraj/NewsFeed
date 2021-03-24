@@ -17,6 +17,8 @@
     </style>
 
     <style name="NewsDescriptionStyle" parent="android:Widget.TextView">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textColor">@color/newsDescription</item>
         <item name="android:textSize">@dimen/newsDescriptionTextSize</item>
         <item name="android:layout_alignParentStart">true</item>
@@ -25,9 +27,9 @@
     </style>
 
     <style name="NewsImageStyle">
-        <item name="android:scaleType">fitXY</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
         <item name="android:layout_marginStart">@dimen/standardPadding</item>
         <item name="android:layout_alignParentEnd">true</item>
         <item name="android:contentDescription">@string/newsImage</item>

@@ -11,7 +11,7 @@ object MockRepositoryResponse {
 
     fun getResponseData(): Result {
         val classLoader = javaClass.classLoader
-        val resource = classLoader.getResource("NewsFeed.json")
+        val resource = classLoader?.getResource("NewsFeed.json")
         val file = File(resource!!.path)
         val jsonString = file.readText(Charsets.UTF_8)
         return Result.Success(Gson().fromJson(jsonString,NewsFeedResponse::class.java))

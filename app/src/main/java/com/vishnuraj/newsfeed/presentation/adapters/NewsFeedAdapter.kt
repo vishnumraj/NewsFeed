@@ -8,6 +8,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.vishnuraj.newsfeed.R
 import com.vishnuraj.newsfeed.base.data.extensions.loadImageUrl
@@ -50,7 +51,7 @@ class NewsFeedAdapter(private val context: Context, private val newsList: List<N
         } ?: run { viewHolder.description.visibility = GONE }
         news.imageUrl?.let {
             viewHolder.image.loadImageUrl(it)
-        } ?: run { viewHolder.image.setImageDrawable(context.getDrawable(R.drawable.image_placeholder))}
+        } ?: run { viewHolder.image.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.image_placeholder))}
     }
 
 }
