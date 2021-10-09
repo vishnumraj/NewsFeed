@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vishnuraj.newsfeed.R
-import com.vishnuraj.newsfeed.base.data.extensions.loadImageUrl
+import com.vishnuraj.newsfeed.data.extensions.loadImageUrl
 import com.vishnuraj.newsfeed.data.models.News
 
 /**

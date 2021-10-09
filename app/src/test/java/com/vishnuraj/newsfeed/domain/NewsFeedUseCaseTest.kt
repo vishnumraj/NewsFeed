@@ -1,40 +1,51 @@
 package com.vishnuraj.newsfeed.domain
 
-import android.content.Context
-import com.vishnuraj.newsfeed.base.data.models.Result
+import com.vishnuraj.newsfeed.MockRepositoryResponse
+import com.vishnuraj.newsfeed.data.api.NewsFeedAPI
 import com.vishnuraj.newsfeed.data.models.NetworkConnectionError
 import com.vishnuraj.newsfeed.data.models.NewsFeedError
 import com.vishnuraj.newsfeed.data.models.NewsFeedResponse
+import com.vishnuraj.newsfeed.data.models.Result
 import com.vishnuraj.newsfeed.data.repository.NewsFeedRepository
 import com.vishnuraj.newsfeed.data.repository.impl.NewsFeedRepositoryImpl
+import com.vishnuraj.newsfeed.domain.impl.NewsFeedUseCaseImpl
+import com.vishnuraj.newsfeed.infrastructure.NetworkManager
+import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.SpyK
-import io.mockk.mockk
 import io.mockk.spyk
 import kotlinx.coroutines.runBlocking
-import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
+import org.junit.Test
 
 class NewsFeedUseCaseTest {
 
+    @MockK
+    private lateinit var api: NewsFeedAPI
+
+    @MockK
+    private lateinit var networkManager: NetworkManager
+
     @SpyK
     private lateinit var repository: NewsFeedRepository
-    private lateinit var context: Context
-    private lateinit var useCase: NewsFeedUseCase
+    private lateinit var useCase: NewsFeedUseCaseImpl
+
     @Before
     fun setup(){
-        context = mockk()
-        repository = spyk(NewsFeedRepositoryImpl(context))
-        useCase = NewsFeedUseCase(repository)
+        MockKAnnotations.init(this, relaxUnitFun = true)
+        repository = spyk(NewsFeedRepositoryImpl(api))
+        useCase = NewsFeedUseCaseImpl(repository, networkManager)
     }
 
     @Test
     fun fetchNewsFeed() {
-        coEvery { repository.isNetworkAvailable() } answers { true }
+        coEvery { networkManager.isNetworkAvailable() } answers { true }
+        coEvery { repository.fetchNewsFeed() } answers { MockRepositoryResponse.getResponseData() }
         val result = runBlocking {
-            useCase.execute()
+            useCase.fetchNewsFeed()
         }
 
         assertNotNull(result)
@@ -46,10 +57,11 @@ class NewsFeedUseCaseTest {
 
     @Test
     fun networkConnectionError(){
-        coEvery { repository.isNetworkAvailable() } answers { false }
+        coEvery { networkManager.isNetworkAvailable() } answers { false }
+        coEvery { repository.fetchNewsFeed() } answers { MockRepositoryResponse.getResponseData() }
 
         val result = runBlocking {
-            useCase.execute()
+            useCase.fetchNewsFeed()
         }
 
         assertNotNull(result)
@@ -59,11 +71,11 @@ class NewsFeedUseCaseTest {
 
     @Test
     fun newsFeedError() {
-        coEvery { repository.isNetworkAvailable() } answers { true }
+        coEvery { networkManager.isNetworkAvailable() } answers { true }
         coEvery { repository.fetchNewsFeed() } answers { Result.Failure(NewsFeedError("server Error"))}
 
         val result = runBlocking {
-            useCase.execute()
+            useCase.fetchNewsFeed()
         }
 
         assertNotNull(result)

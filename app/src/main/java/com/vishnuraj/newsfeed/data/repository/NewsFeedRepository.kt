@@ -1,6 +1,6 @@
 package com.vishnuraj.newsfeed.data.repository
 
-import com.vishnuraj.newsfeed.base.data.models.Result
+import com.vishnuraj.newsfeed.data.models.Result
 
 /**
  * Interface representing the NewsFeedRepository. The repository
@@ -9,12 +9,6 @@ import com.vishnuraj.newsfeed.base.data.models.Result
  */
 interface NewsFeedRepository {
 
-    /**
-     * Method to check if the Network is available.
-     *
-     * @return true if the Network is available
-     */
-    suspend fun isNetworkAvailable(): Boolean
 
     /**
      * Method to fetch the NewsFeed data from the server

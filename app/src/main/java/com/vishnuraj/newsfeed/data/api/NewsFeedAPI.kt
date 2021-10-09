@@ -1,17 +1,8 @@
-package com.vishnuraj.newsfeed.data.models
+package com.vishnuraj.newsfeed.data.api
 
-import com.vishnuraj.newsfeed.base.data.models.SessionEndPoint
+import com.vishnuraj.newsfeed.data.models.NewsFeedResponse
 import retrofit2.Response
 import retrofit2.http.GET
-
-/**
- * Class representing the SessionEndPoint for the Network layer. This
- * class basically return the interface representing http request for
- * the retrofit.
- */
-class NewsFeedEndPoint : SessionEndPoint<NewsFeedAPI>() {
-    override val api = NewsFeedAPI::class.java
-}
 
 /**
  * Interface representing the http method for getting the NewsFeedResponse

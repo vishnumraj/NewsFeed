@@ -1,7 +1,7 @@
-package com.vishnuraj.newsfeed.base.data.extensions
+package com.vishnuraj.newsfeed.data.extensions
 
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import com.vishnuraj.newsfeed.R
 
 /**
@@ -11,8 +11,10 @@ import com.vishnuraj.newsfeed.R
  * @param imageUri ImageUrl
  */
 fun ImageView.loadImageUrl(imageUri: String) {
-    Picasso.get()
+
+    Glide.with(context)
         .load(imageUri)
+        .centerCrop()
         .placeholder(R.drawable.image_placeholder)
         .into(this)
 }

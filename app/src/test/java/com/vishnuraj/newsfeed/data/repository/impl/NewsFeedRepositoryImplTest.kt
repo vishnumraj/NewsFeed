@@ -1,28 +1,34 @@
 package com.vishnuraj.newsfeed.data.repository.impl
 
-import android.content.Context
-import com.vishnuraj.newsfeed.base.data.models.Result
+import com.vishnuraj.newsfeed.MockRepositoryResponse
+import com.vishnuraj.newsfeed.data.api.NewsFeedAPI
 import com.vishnuraj.newsfeed.data.models.NewsFeedResponse
+import com.vishnuraj.newsfeed.data.models.Result
 import com.vishnuraj.newsfeed.data.repository.NewsFeedRepository
-import io.mockk.mockk
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 
-import org.junit.Assert.*
-
 class NewsFeedRepositoryImplTest {
-    private lateinit var context: Context
+    @MockK
+    private lateinit var api: NewsFeedAPI
+
     private lateinit var repository: NewsFeedRepository
 
     @Before
     fun setUp() {
-        context = mockk()
-        repository = NewsFeedRepositoryImpl(context)
+        MockKAnnotations.init(this, relaxUnitFun = true)
+        repository = NewsFeedRepositoryImpl(api)
     }
 
     @Test
     fun fetchNewsFeed() {
+        coEvery { api.fetchNewsFeed() } answers { MockRepositoryResponse.getRetrofitResponse() }
         val result = runBlocking {
             repository.fetchNewsFeed()
         }
